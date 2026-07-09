@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" fill="none">
+    <defs>
+        <!-- Gradients -->
+        <linearGradient id="ribaPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#b5179e" />
+            <stop offset="40%" stop-color="#7209b7" />
+            <stop offset="100%" stop-color="#4895ef" />
+        </linearGradient>
+        <linearGradient id="ribaBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4cc9f0" />
+            <stop offset="100%" stop-color="#4895ef" />
+        </linearGradient>
+        <!-- Cyber Glow Effect -->
+        <filter id="cyberGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Circuit lines on the left -->
+    <g opacity="0.85">
+        <!-- Path 1 (Top) -->
+        <path d="M 15 25 L 35 25 L 45 35 L 65 35" stroke="url(#ribaPurple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="15" cy="25" r="3.5" fill="#b5179e" />
+        
+        <!-- Path 2 (Middle Top) -->
+        <path d="M 22 40 L 40 40 L 48 48 L 65 48" stroke="url(#ribaPurple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="22" cy="40" r="3.5" fill="#7209b7" />
+
+        <!-- Path 3 (Middle Bottom) -->
+        <path d="M 18 58 L 38 58 L 48 48" stroke="url(#ribaPurple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="18" cy="58" r="3.5" fill="#7209b7" />
+
+        <!-- Path 4 (Bottom) -->
+        <path d="M 28 72 L 48 72 L 58 62 L 65 62" stroke="url(#ribaPurple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="28" cy="72" r="3.5" fill="#4895ef" />
+        
+        <!-- Additional tech nodes -->
+        <circle cx="35" cy="35" r="2" fill="#7209b7" opacity="0.6" />
+        <circle cx="55" cy="25" r="2" fill="#b5179e" opacity="0.6" />
+    </g>
+
+    <!-- Capital R Body -->
+    <path d="M 70 20 
+             H 105 
+             C 122 20, 122 46, 105 46 
+             H 70 
+             V 80 
+             H 82 
+             V 46 
+             H 98 
+             L 118 80 
+             H 132 
+             L 110 44 
+             C 125 40, 125 20, 105 20 Z" 
+          fill="url(#ribaPurple)" />
+
+    <!-- Swooping Arrow -->
+    <path d="M 50 62
+             C 65 82, 105 82, 128 50 
+             L 122 47 
+             L 138 42 
+             L 136 58 
+             L 131 52
+             C 112 78, 72 78, 50 62 Z" 
+          fill="url(#ribaBlue)" filter="url(#cyberGlow)" />
+</svg>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RIBA FOR E.BRokerage & Marketing - Premium Web Development, Mobile Apps & E-Commerce Solutions">
+    <title>RIBA FOR E.BRokerage & Marketing</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="en">
+
+    <!-- Glow Orbs -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+
+
+
+    <!-- ====== HEADER ====== -->
+    <header class="main-header" id="header">
+        <div class="container navbar-container">
+            <a href="#hero" class="logo" id="nav-logo">
+                <img src="assets/logo.svg" alt="RIBA Logo" class="logo-img">
+                <div class="logo-text-wrap">
+                    <span class="logo-text">RIBA<span class="accent-text">TECH</span></span>
+                    <span class="logo-sub" data-en="Software & Digital Solutions" data-ar="للبرمجيات والحلول الرقمية">Software & Digital Solutions</span>
+                </div>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#hero" class="nav-link active" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link" data-en="Services" data-ar="خدماتنا">Services</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                    <li class="nav-item"><a href="#testimonials" class="nav-link" data-en="Testimonials" data-ar="آراء العملاء">Testimonials</a></li>
+                    <li class="nav-item"><a href="#calculator" class="nav-link" data-en="Cost Estimator" data-ar="حساب التكلفة">Cost Estimator</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" data-en="Contact" data-ar="تواصل معنا">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <!-- Search Input -->
+                <div class="header-search-box">
+                    <input type="text" placeholder="Search..." data-en="Search..." data-ar="بحث...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <!-- Language Toggle -->
+                <button class="lang-toggle" id="lang-toggle" aria-label="Toggle Language">
+                    <span class="lang-option" id="lang-en-label">EN</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-option" id="lang-ar-label">AR</span>
+                </button>
+                <a href="#calculator" class="btn btn-nav" data-en="Get Estimate" data-ar="احصل على تقدير">Get Estimate</a>
+                <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ====== HERO ====== -->
+        <section class="hero-section" id="hero">
+            <canvas id="canvas-circuits" class="hero-canvas"></canvas>
+            
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text" data-en="Innovating Digital Excellence" data-ar="نبتكر التميز الرقمي">Innovating Digital Excellence</span>
+                    </div>
+                    <h1 class="hero-title" id="hero-main-title">
+                        <span data-en="Engineering Premium" data-ar="نبرمج ونبتكر">Engineering Premium</span><br>
+                        <span class="text-gradient" id="hero-gradient-text" data-en="Custom Software &" data-ar="الحلول البرمجية">Custom Software &</span>
+                        <span id="hero-realities" data-en=" Smart Apps" data-ar=" والأنظمة الذكية"> Smart Apps</span>
+                    </h1>
+                    <p class="hero-description" id="hero-subtitle" data-en="We design, engineer, and deploy premium software solutions, high-performance web applications, and secure systems tailored for digital growth." data-ar="نهندس ونبرمج ونطلق حلولاً برمجية متكاملة، تطبيقات ويب عالية الأداء وأنظمة آمنة مصممة خصيصاً لنمو أعمالك الرقمية.">
+                        We design, engineer, and deploy premium software solutions, high-performance web applications, and secure systems tailored for digital growth.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary">
+                            <span data-en="Explore Services" data-ar="استكشف خدماتنا">Explore Services</span>
+                            <i class="fa-solid fa-arrow-right icon-btn"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span data-en="Let's Talk" data-ar="تحدث معنا">Let's Talk</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-graphic-wrapper">
+                    <div class="hero-card">
+                        <div class="card-glow"></div>
+                        <div class="hero-logo-display">
+                            <img src="assets/logo.svg" alt="RIBA Circuit Logo" class="hero-circuit-logo">
+                        </div>
+                        <div class="card-overlay-content">
+                            <div class="stat-badge">
+                                <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-val">99.9%</span>
+                                    <span class="stat-lbl" data-en="Uptime & Performance" data-ar="الأداء والاستقرار">Uptime & Performance</span>
+                                </div>
+                            </div>
+                            <div class="tech-stack-icons">
+                                <span class="tech-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+                                <span class="tech-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                                <span class="tech-tag"><i class="fa-brands fa-js"></i> JS</span>
+                                <span class="tech-tag"><i class="fa-brands fa-node-js"></i> Node</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== ABOUT ====== -->
+        <section class="about-section section-padding" id="about">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span data-en="Who is " data-ar="من نحن ">Who is </span><span class="text-gradient">RIBA</span><span data-en="?" data-ar="؟">?</span>
+                    </h2>
+                    <p class="section-subtitle" data-en="We are a next-generation software development and digital strategy powerhouse." data-ar="نحن شركة رائدة في تطوير البرمجيات والاستراتيجيات الرقمية من الجيل الجديد.">We are a next-generation software development and digital strategy powerhouse.</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-info">
+                        <h3 class="about-heading" data-en="Accelerating Business Growth through Intelligent Programming" data-ar="نسرّع نمو أعمالك من خلال البرمجة الذكية">Accelerating Business Growth through Intelligent Programming</h3>
+                        <p class="about-text" data-en="RIBA is a full-service software development agency founded with a single mission: to empower businesses globally by delivering custom-engineered digital systems. Inspired by the circuit connections and upward-surging arrow of our brand identity, we drive digital transformation." data-ar="ريبا هي وكالة تطوير برمجيات متكاملة الخدمات، تأسست بمهمة واحدة: تمكين الأعمال التجارية على مستوى العالم من خلال تقديم أنظمة رقمية مصممة خصيصاً. مستوحاة من اتصالات الدوائر وسهم الصعود في هويتنا البصرية، نقود التحول الرقمي.">
+                            RIBA is a full-service software development agency founded with a single mission.
+                        </p>
+                        <p class="about-text" data-en="Whether you are a startup needing a stunning launchpad website, or an enterprise looking for sophisticated e-commerce, brokerage integrations, and customized API infrastructures, we bring top-tier craftsmanship to every single line of code." data-ar="سواء كنت شركة ناشئة تحتاج إلى موقع إطلاق مذهل، أو مؤسسة تبحث عن حلول تجارة إلكترونية متطورة وتكاملات وساطة وبنية تحتية مخصصة، نحن نقدم أعلى مستويات الجودة في كل سطر كود.">
+                            Whether you are a startup or an enterprise, we deliver excellence.
+                        </p>
+                        
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+                                <div class="feature-desc">
+                                    <h4 data-en="Custom-Crafted Code" data-ar="كود مصمم خصيصاً">Custom-Crafted Code</h4>
+                                    <p data-en="No generic templates. Every platform is written from scratch for lightning-fast speeds." data-ar="لا قوالب جاهزة. كل منصة تُكتب من الصفر لسرعة فائقة وأداء عالٍ.">No generic templates. Every platform is written from scratch for lightning-fast speeds.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                                <div class="feature-desc">
+                                    <h4 data-en="Growth & Marketing Integrated" data-ar="التسويق والنمو مدمجان">Growth & Marketing Integrated</h4>
+                                    <p data-en="We build with SEO, marketing automation, and conversion optimization baked in." data-ar="نبني مع تحسين محركات البحث وأتمتة التسويق وتحسين معدلات التحويل.">We build with SEO, marketing automation, and conversion optimization baked in.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-visual">
+                        <div class="visual-stack">
+                            <div class="visual-card main-visual">
+                                <img src="assets/logo.svg" alt="RIBA Identity" class="visual-img">
+                                <div class="visual-glow"></div>
+                            </div>
+                            <div class="visual-card overlay-visual">
+                                <div class="terminal-header">
+                                    <span class="terminal-dot red"></span>
+                                    <span class="terminal-dot yellow"></span>
+                                    <span class="terminal-dot green"></span>
+                                    <span class="terminal-title">riba_engine.sh</span>
+                                </div>
+                                <div class="terminal-body">
+                                    <p class="t-line"><span class="t-comment"># RIBA Tech Engine v2</span></p>
+                                    <p class="t-line"><span class="t-keyword">const</span> agency = <span class="t-string">"RIBA"</span>;</p>
+                                    <p class="t-line">agency.build({ web: <span class="t-keyword">true</span> });</p>
+                                    <p class="t-line success"><i class="fa-solid fa-check"></i> Running flawlessly!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== SERVICES ====== -->
+        <section class="services-section section-padding" id="services">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span data-en="Custom " data-ar="خدماتنا ">Custom </span><span class="text-gradient" data-en="Software Services" data-ar="البرمجية المتميزة">Software Services</span>
+                    </h2>
+                    <p class="section-subtitle" data-en="High-fidelity engineering tailored perfectly for your digital growth." data-ar="هندسة برمجية عالية الدقة مصممة خصيصاً لنمو أعمالك الرقمية.">High-fidelity engineering tailored perfectly for your digital growth.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- 1. E-Commerce Development -->
+                    <div class="service-card">
+                        <div class="service-glow"></div>
+                        <div class="service-header">
+                            <div class="service-icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <h3 class="service-name" data-en="E-Commerce Development" data-ar="التجارة الإلكترونية وتطوير المتاجر">E-Commerce Development</h3>
+                        </div>
+                        <p class="service-description" data-en="Engineering highly scalable digital storefronts, checkout systems, and inventory sync databases." data-ar="برمجيات تجارة إلكترونية متكاملة وتطوير متاجر رقمية عالية الأداء مع ربط بوابات الدفع والمخازن.">Engineering highly scalable digital storefronts.</p>
+                        <ul class="service-bullets">
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Multi-gateway payment checkout" data-ar="دمج بوابات الدفع المتعددة">Multi-gateway payment checkout</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Custom admin control panels" data-ar="لوحات تحكم برمجية خاصة">Custom admin control panels</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Automated stock & order databases" data-ar="قواعد بيانات لإدارة المخزون والطلبات">Automated stock & order databases</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. Custom Web & Software -->
+                    <div class="service-card">
+                        <div class="service-glow"></div>
+                        <div class="service-header">
+                            <div class="service-icon-box"><i class="fa-solid fa-gears"></i></div>
+                            <h3 class="service-name" data-en="Custom Software & Web" data-ar="تطوير البرمجيات وتطبيقات الويب">Custom Software & Web</h3>
+                        </div>
+                        <p class="service-description" data-en="Coding custom web applications, automation engines, and cloud software platforms with optimized performance." data-ar="كتابة كود مخصص لتطبيقات الويب المبتكرة، محركات الأتمتة، والمنصات السحابية بأداء فائق.">Coding custom web applications and automation engines.</p>
+                        <ul class="service-bullets">
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Single Page Applications (SPA)" data-ar="تطبيقات الصفحة الواحدة (React/Vite)">Single Page Applications (SPA)</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Custom API & backend connections" data-ar="برمجة واجهات API والأنظمة الخلفية">Custom API & backend connections</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Clean, scalable code architecture" data-ar="كود برميجي نظيف وقابل للتوسع">Clean, scalable code architecture</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. E-Brokerage & FinTech Systems -->
+                    <div class="service-card">
+                        <div class="service-glow"></div>
+                        <div class="service-header">
+                            <div class="service-icon-box"><i class="fa-solid fa-wallet"></i></div>
+                            <h3 class="service-name" data-en="E-Brokerage & FinTech Systems" data-ar="الوساطة الإلكترونية والتكنولوجيا المالية">E-Brokerage & FinTech Systems</h3>
+                        </div>
+                        <p class="service-description" data-en="Custom development of secure transactional platforms, trading interfaces, and military-grade financial systems." data-ar="تطوير وبرمجة منصات المعاملات الآمنة، واجهات التداول، وأنظمة التكنولوجيا المالية والتكاملات المصرفية.">Custom development of secure transactional platforms.</p>
+                        <ul class="service-bullets">
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Real-time transaction & market APIs" data-ar="واجهات برمجة المعاملات والأسواق الفورية">Real-time transaction & market APIs</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Military-grade security & encryption" data-ar="مستويات تشفير وحماية متقدمة">Military-grade security & encryption</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Trading & analytical dashboards" data-ar="لوحات تحكم تداول وتحليل تفاعلية">Trading & analytical dashboards</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. IT Consulting & Analysis -->
+                    <div class="service-card">
+                        <div class="service-glow"></div>
+                        <div class="service-header">
+                            <div class="service-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3 class="service-name" data-en="IT Consulting & Analysis" data-ar="الاستشارات البرمجية وتحليل النظم">IT Consulting & Analysis</h3>
+                        </div>
+                        <p class="service-description" data-en="System architecture design, technology audits, database modeling, and optimization consulting." data-ar="تصميم هندسة البرمجيات، مراجعة وتدقيق الكود، نمذجة قواعد البيانات، وتقديم استشارات تحسين الأداء.">System architecture design and database modeling.</p>
+                        <ul class="service-bullets">
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="System requirements engineering" data-ar="هندسة وتحليل متطلبات النظم">System requirements engineering</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Code security & performance audits" data-ar="تدقيق أمان الكود وسرعة الأنظمة">Code security & performance audits</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-en="Database structure optimization" data-ar="تحسين وهيكلة قواعد البيانات">Database structure optimization</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CALCULATOR ====== -->
+        <section class="calculator-section section-padding" id="calculator">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span data-en="Project " data-ar="حاسبة ">Project </span><span class="text-gradient" data-en="Cost Estimator" data-ar="تكلفة المشروع">Cost Estimator</span>
+                    </h2>
+                    <p class="section-subtitle" data-en="Configure your project specs and get an instant price estimate." data-ar="حدد مواصفات مشروعك واحصل على تقدير فوري للسعر.">Configure your project specs and get an instant price estimate.</p>
+                </div>
+                
+                <div class="calculator-wrapper">
+                    <div class="calc-options">
+                        <!-- Project Type -->
+                        <div class="calc-group">
+                            <h4 class="calc-group-title" data-en="1. Select Project Type" data-ar="١. اختر نوع المشروع">1. Select Project Type</h4>
+                            <div class="calc-grid-selector">
+                                <label class="selector-card active" id="label-type-web">
+                                    <input type="radio" name="project-type" value="web" checked class="hidden-radio">
+                                    <div class="selector-icon"><i class="fa-solid fa-globe"></i></div>
+                                    <span data-en="Web App" data-ar="تطبيق ويب">Web App</span>
+                                </label>
+                                <label class="selector-card" id="label-type-ecommerce">
+                                    <input type="radio" name="project-type" value="ecommerce" class="hidden-radio">
+                                    <div class="selector-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                                    <span data-en="E-Commerce" data-ar="متجر إلكتروني">E-Commerce</span>
+                                </label>
+                                <label class="selector-card" id="label-type-mobile">
+                                    <input type="radio" name="project-type" value="mobile" class="hidden-radio">
+                                    <div class="selector-icon"><i class="fa-solid fa-mobile"></i></div>
+                                    <span data-en="Mobile App" data-ar="تطبيق جوال">Mobile App</span>
+                                </label>
+                                <label class="selector-card" id="label-type-brokerage">
+                                    <input type="radio" name="project-type" value="brokerage" class="hidden-radio">
+                                    <div class="selector-icon"><i class="fa-solid fa-chart-column"></i></div>
+                                    <span data-en="FinTech" data-ar="فينتك">FinTech</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Pages Slider -->
+                        <div class="calc-group">
+                            <h4 class="calc-group-title">
+                                <span data-en="2. Project Scale: " data-ar="٢. حجم المشروع: ">2. Project Scale: </span>
+                                <span id="pages-count-display" class="accent-val">5 Screens / Pages</span>
+                            </h4>
+                            <input type="range" id="pages-slider" class="calc-range" min="1" max="30" value="5">
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="calc-group">
+                            <h4 class="calc-group-title" data-en="3. Add-On Features" data-ar="٣. المميزات الإضافية">3. Add-On Features</h4>
+                            <div class="calc-checkbox-grid">
+                                <label class="checkbox-card" id="label-feat-db">
+                                    <input type="checkbox" id="feat-db" class="hidden-checkbox">
+                                    <div class="check-box-indicator"><i class="fa-solid fa-check"></i></div>
+                                    <div class="check-label-info">
+                                        <span class="check-title" data-en="Database & CMS" data-ar="قاعدة البيانات">Database & CMS</span>
+                                        <span class="check-subtitle">+$350</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-card" id="label-feat-auth">
+                                    <input type="checkbox" id="feat-auth" class="hidden-checkbox">
+                                    <div class="check-box-indicator"><i class="fa-solid fa-check"></i></div>
+                                    <div class="check-label-info">
+                                        <span class="check-title" data-en="User Auth System" data-ar="نظام تسجيل الدخول">User Auth System</span>
+                                        <span class="check-subtitle">+$200</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-card" id="label-feat-seo">
+                                    <input type="checkbox" id="feat-seo" class="hidden-checkbox">
+                                    <div class="check-box-indicator"><i class="fa-solid fa-check"></i></div>
+                                    <div class="check-label-info">
+                                        <span class="check-title" data-en="SEO Optimization" data-ar="تحسين محركات البحث">SEO Optimization</span>
+                                        <span class="check-subtitle">+$300</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-card" id="label-feat-multilang">
+                                    <input type="checkbox" id="feat-multilang" class="hidden-checkbox">
+                                    <div class="check-box-indicator"><i class="fa-solid fa-check"></i></div>
+                                    <div class="check-label-info">
+                                        <span class="check-title" data-en="Multi-Language Support" data-ar="دعم متعدد اللغات">Multi-Language Support</span>
+                                        <span class="check-subtitle">+$250</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Summary Panel -->
+                    <div class="calc-summary-panel">
+                        <div class="summary-card">
+                            <h4 class="summary-title" data-en="Estimate Summary" data-ar="ملخص التقدير">Estimate Summary</h4>
+                            <div class="summary-details-list">
+                                <div class="summary-row">
+                                    <span class="sum-label" data-en="Core Architecture:" data-ar="نوع المشروع:">Core Architecture:</span>
+                                    <span class="sum-value" id="sum-type">Web Application</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="sum-label" data-en="Project Scope:" data-ar="حجم المشروع:">Project Scope:</span>
+                                    <span class="sum-value" id="sum-scale">5 Screens</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="sum-label" data-en="Features Enabled:" data-ar="المميزات المفعّلة:">Features Enabled:</span>
+                                    <span class="sum-value" id="sum-features">0 Selected</span>
+                                </div>
+                                <div class="summary-row border-top">
+                                    <span class="sum-label" data-en="Delivery Timeline:" data-ar="مدة التسليم:">Delivery Timeline:</span>
+                                    <span class="sum-value accent-green" id="sum-timeline">~ 2-3 Weeks</span>
+                                </div>
+                            </div>
+                            <div class="price-display-wrapper">
+                                <div class="price-lbl" data-en="ESTIMATED PRICE" data-ar="السعر التقديري">ESTIMATED PRICE</div>
+                                <div class="price-amount" id="total-price-display">$1,200</div>
+                                <div class="price-note" data-en="*Excluding monthly server hosting costs" data-ar="*لا يشمل تكاليف استضافة الخادم الشهرية">*Excluding monthly server hosting costs</div>
+                            </div>
+                            <button class="btn btn-primary btn-block" id="btn-order-from-calc">
+                                <span data-en="Lock In This Estimate" data-ar="تأكيد هذا التقدير">Lock In This Estimate</span>
+                                <i class="fa-solid fa-calendar-check icon-btn"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== TESTIMONIALS ====== -->
+        <section class="testimonials-section section-padding" id="testimonials">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title" data-en="Our Clients' Trust, Our Success Story" data-ar="ثقة عملائنا، قصة نجاحنا">Our Clients' Trust, Our Success Story</h2>
+                    <p class="section-subtitle" data-en="We partner with industry leaders to engineer reliable software systems." data-ar="نشترك مع رواد الصناعة لهندسة أنظمة برمجية موثوقة وعالية الأداء.">We partner with industry leaders to engineer reliable software systems.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar-wrapper">
+<div class="testimonial-avatar-spacer" aria-hidden="true"></div>
+                        </div>
+                        <p class="testimonial-quote" data-en="&ldquo;The custom software developed by RIBA TECH has revolutionized our data operations. Their engineering team is exceptionally professional.&rdquo;" data-ar="«ثقة عملائنا، الدرب النموذجي للتسويق الرقمي لبناء الحلول للنجاح الإلكتروني لنمو أعمالك. ريبا تيك طورت لنا نظام تحليل بيانات ذكي ساهم في تحسين الكفاءة البرمجية بشكل كبير.»">«ثقة عملائنا، الدرب النموذجي للتسويق الرقمي لبناء الحلول للنجاح الإلكتروني لنمو أعمالك. ريبا تيك طورت لنا نظام تحليل بيانات ذكي ساهم في تحسين الكفاءة البرمجية بشكل كبير.»</p>
+                        <h4 class="testimonial-name" data-en="Khaled Al-Otaibi" data-ar="خالد العتيبي">Khaled Al-Otaibi</h4>
+                        <span class="testimonial-role" data-en="Tech Director, CloudMetrics" data-ar="مدير التقنية، CloudMetrics">Tech Director, CloudMetrics</span>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar-wrapper">
+<div class="testimonial-avatar-spacer" aria-hidden="true"></div>
+                        </div>
+                        <p class="testimonial-quote" data-en="&ldquo;Our e-commerce portal's sales surged by 150% after launching RIBA's custom-engineered solution. Speed and code quality are top-tier.&rdquo;" data-ar="«ثقة عملائنا، أساس نجاحنا والسبيل الأمثل لبناء ثقة متفوقة للمشروع لنمو أعمالك. لقد صمموا لنا منصة تجارة إلكترونية فائقة السرعة ومتكاملة برمجياً.»">«ثقة عملائنا، أساس نجاحنا والسبيل الأمثل لبناء ثقة متفوقة للمشروع لنمو أعمالك. لقد صمموا لنا منصة تجارة إلكترونية فائقة السرعة ومتكاملة برمجياً.»</p>
+                        <h4 class="testimonial-name" data-en="Hamed Al-Fawwaz" data-ar="حامد الفواز">Hamed Al-Fawwaz</h4>
+                        <span class="testimonial-role" data-en="Founder, AeroMarket" data-ar="مؤسس، AeroMarket">Founder, AeroMarket</span>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar-wrapper">
+<div class="testimonial-avatar-spacer" aria-hidden="true"></div>
+                        </div>
+                        <p class="testimonial-quote" data-en="&ldquo;The security and processing speed of our new FinTech system are incredible. A major milestone for our brokerage operations.&rdquo;" data-ar="«ثقة عملائنا، الضمان الفعلي من السفير من مصداقيتنا والمسؤول الأول لنمو أعمالك. أنظمة التكنولوجيا المالية والوساطة التي قامت برمجتها ريبا تيك تميزت بالأمان والسرعة.»">«ثقة عملائنا، الضمان الفعلي من السفير من مصداقيتنا والمسؤول الأول لنمو أعمالك. أنظمة التكنولوجيا المالية والوساطة التي قامت برمجتها ريبا تيك تميزت بالأمان والسرعة.»</p>
+                        <h4 class="testimonial-name" data-en="Ahmed Al-Fawzan" data-ar="أحمد الفوزان">Ahmed Al-Fawzan</h4>
+                        <span class="testimonial-role" data-en="CEO, NexGen Solutions" data-ar="المدير التنفيذي، NexGen Solutions">CEO, NexGen Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== PORTFOLIO ====== -->
+        <section class="portfolio-section section-padding" id="portfolio">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span data-en="Featured " data-ar="أبرز ">Featured </span><span class="text-gradient" data-en="Project Concepts" data-ar="مفاهيم المشاريع">Project Concepts</span>
+                    </h2>
+                    <p class="section-subtitle" data-en="Discover how we shape tech solutions into high-fidelity experiences." data-ar="اكتشف كيف نحوّل الحلول التقنية إلى تجارب عالية الجودة.">Discover how we shape tech solutions into high-fidelity experiences.</p>
+                </div>
+                
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all" data-en="All Projects" data-ar="جميع الأعمال">All Projects</button>
+                    <button class="filter-btn" data-filter="web" data-en="Custom Web" data-ar="مواقع مخصصة">Custom Web</button>
+                    <button class="filter-btn" data-filter="ecommerce" data-en="E-Commerce" data-ar="تجارة إلكترونية">E-Commerce</button>
+                    <button class="filter-btn" data-filter="brokerage" data-en="FinTech" data-ar="فينتك">FinTech</button>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <!-- 1. FinTech Trading Dashboard -->
+                    <div class="portfolio-item" data-category="brokerage">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_fintech.png" alt="FinTech Trading Dashboard" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="FinTech System" data-ar="نظام فينتك">FinTech System</span>
+                                    <h3 class="proj-title" data-en="RIBA Trading Engine" data-ar="محرك التداول RIBA">RIBA Trading Engine</h3>
+                                    <p class="proj-snippet" data-en="Real-time trading dashboard with candlestick charts, portfolio analytics, and multi-asset management." data-ar="لوحة تداول في الوقت الفعلي مع مخططات الشموع وتحليلات المحفظة وإدارة الأصول المتعددة.">Real-time trading dashboard with candlestick charts and portfolio analytics.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. E-Commerce Platform -->
+                    <div class="portfolio-item" data-category="ecommerce">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_ecommerce.png" alt="E-Commerce Platform" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="E-Commerce" data-ar="تجارة إلكترونية">E-Commerce</span>
+                                    <h3 class="proj-title" data-en="AeroMarket Hub" data-ar="منصة AeroMarket">AeroMarket Hub</h3>
+                                    <p class="proj-snippet" data-en="Ultra-fast e-commerce platform with smart product catalog, multi-gateway payments, and real-time inventory." data-ar="منصة تجارة إلكترونية فائقة السرعة مع كتالوج منتجات ذكي وبوابات دفع متعددة ومخزون فوري.">Ultra-fast e-commerce platform with smart product catalog.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. SaaS Analytics Dashboard -->
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_saas.png" alt="SaaS Analytics Dashboard" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="Web Application" data-ar="تطبيق ويب">Web Application</span>
+                                    <h3 class="proj-title" data-en="CloudMetrics Pro" data-ar="CloudMetrics Pro">CloudMetrics Pro</h3>
+                                    <p class="proj-snippet" data-en="Enterprise-grade SaaS analytics dashboard with real-time data visualization and user metrics." data-ar="لوحة تحليلات SaaS للمؤسسات مع تصور بيانات في الوقت الفعلي ومقاييس المستخدمين.">Enterprise SaaS analytics dashboard with real-time data visualization.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Corporate Website -->
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_corporate.png" alt="Corporate Website" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="Corporate Web" data-ar="موقع شركة">Corporate Web</span>
+                                    <h3 class="proj-title" data-en="NexGen Solutions" data-ar="NexGen Solutions">NexGen Solutions</h3>
+                                    <p class="proj-snippet" data-en="Premium corporate landing page with modern design, smooth animations, and full responsiveness." data-ar="صفحة هبوط شركة متميزة بتصميم حديث وحركات سلسة واستجابة كاملة.">Premium corporate landing page with modern design.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Mobile App -->
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_mobile.png" alt="Mobile App Design" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="Mobile App" data-ar="تطبيق جوال">Mobile App</span>
+                                    <h3 class="proj-title" data-en="SwiftDeliver App" data-ar="تطبيق SwiftDeliver">SwiftDeliver App</h3>
+                                    <p class="proj-snippet" data-en="Cross-platform mobile application with native-quality UI, push notifications, and offline sync." data-ar="تطبيق جوال متعدد المنصات بواجهة مستخدم بجودة أصلية وإشعارات فورية ومزامنة بدون اتصال.">Cross-platform mobile app with native-quality UI.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Restaurant E-Commerce -->
+                    <div class="portfolio-item" data-category="ecommerce">
+                        <div class="portfolio-img-box">
+                            <img src="imeg/portfolio_restaurant.png" alt="Restaurant Platform" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <div class="overlay-details">
+                                    <span class="proj-category" data-en="E-Commerce" data-ar="تجارة إلكترونية">E-Commerce</span>
+                                    <h3 class="proj-title" data-en="GourmetOrder Platform" data-ar="منصة GourmetOrder">GourmetOrder Platform</h3>
+                                    <p class="proj-snippet" data-en="Smart restaurant ordering system with menu management, delivery tracking, and online payments." data-ar="نظام طلبات مطاعم ذكي مع إدارة القائمة وتتبع التوصيل والدفع الإلكتروني.">Smart restaurant ordering system with delivery tracking.</p>
+                                    <a href="#contact" class="proj-link" data-en="View Project" data-ar="عرض المشروع"><span>View Project</span> <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CONTACT ====== -->
+        <section class="contact-section section-padding" id="contact">
+            <div class="container">
+                <div class="section-header text-center">
+<h2 class="section-title">
+                        <span data-en="Contact" data-ar="تواصل">Contact</span>
+                        <span class="text-gradient" data-en="Us" data-ar="معنا">Us</span>
+                    </h2>
+<p class="section-subtitle" data-en="Tell us about your project — we’ll respond within 12 hours." data-ar="شاركنا تفاصيل مشروعك — سنرد خلال 12 ساعة.">Tell us about your project — we’ll respond within 12 hours.</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-info-panel">
+                        <div class="contact-card-bg"></div>
+<h3 class="info-title" data-en="Contact & Services" data-ar="التواصل والخدمات">Contact & Services</h3>
+<p class="info-text" data-en="We provide premium software solutions: web apps, e-commerce, fintech systems, and secure integrations." data-ar="نقدم حلول برمجية متميزة: تطبيقات الويب، التجارة الإلكترونية، أنظمة الفينتك، وتكاملات آمنة.">We provide premium software solutions: web apps, e-commerce, fintech systems, and secure integrations.</p>
+                        
+                        <div class="contact-channels">
+                            <div class="channel-card">
+                                <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="channel-info">
+                                    <span class="chan-title" data-en="Email Us Directly" data-ar="راسلنا مباشرة">Email Us Directly</span>
+                                    <a href="mailto:solutions@riba.tech" class="chan-link" id="display-email">solutions@riba.tech</a>
+                                </div>
+                            </div>
+                            <div class="channel-card" id="whatsapp-channel" style="display:none">
+                                <div class="channel-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="channel-info">
+                                    <span class="chan-title" data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
+                                    <a href="#" class="chan-link" id="display-whatsapp"></a>
+                                </div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="channel-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="channel-info">
+                                    <span class="chan-title" data-en="Global Services" data-ar="خدمات عالمية">Global Services</span>
+                                    <span class="chan-link" data-en="Available for Remote Projects" data-ar="متاح للمشاريع عن بُعد">Available for Remote Projects</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brand-showcase-panel">
+                            <img src="assets/logo.svg" alt="RIBA Logo" class="showcase-mini-logo">
+                            <div class="showcase-caption">
+                                <strong>RIBA FOR E.BROKERAGE & MARKETING</strong>
+                                <span data-en="We grow together, connecting code & progress." data-ar="ننمو معاً، نربط الكود بالتقدم.">We grow together, connecting code & progress.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-wrapper" id="form-container-box">
+                        <form id="riba-contact-form" class="riba-form">
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                                    <input type="text" id="form-name" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
+                                    <input type="email" id="form-email" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" data-en="Phone / WhatsApp" data-ar="الهاتف / واتساب">Phone / WhatsApp</label>
+                                <input type="text" id="form-phone" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" data-en="Project Subject" data-ar="موضوع المشروع">Project Subject</label>
+                                <input type="text" id="form-subject" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" data-en="Tell Us About Your Project" data-ar="أخبرنا عن مشروعك">Tell Us About Your Project</label>
+                                <textarea id="form-message" class="form-textarea" rows="5" required></textarea>
+                            </div>
+                            <div class="form-status" id="form-status-msg"></div>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-contact">
+                                <span data-en="Send Message" data-ar="إرسال الرسالة">Send Message</span>
+                                <i class="fa-solid fa-paper-plane icon-btn"></i>
+                            </button>
+                        </form>
+                        
+                        <div class="terminal-overlay hidden" id="terminal-confirmation-overlay">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">inquiry_submission.sh</span>
+                            </div>
+                            <div class="terminal-body" id="terminal-confirmation-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#hero" class="logo">
+                        <img src="assets/logo.svg" alt="RIBA Logo" class="logo-img">
+                        <span class="logo-text">RIBA<span class="accent-text">TECH</span></span>
+                    </a>
+                    <p class="footer-brand-desc" data-en="Connecting code, systems, and performance. We engineer premium software solutions tailored to scale business values globally." data-ar="نربط الكود بالأنظمة والأداء. نهندس حلولاً برمجية متميزة مصممة لتوسيع قيم الأعمال عالمياً.">Connecting code, systems, and performance.</p>
+                </div>
+                <div class="footer-links-grid">
+                    <div class="links-column">
+                        <h4 class="column-title" data-en="Company" data-ar="الشركة">Company</h4>
+                        <ul class="column-list">
+                            <li><a href="#hero" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                            <li><a href="#about" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                            <li><a href="#services" data-en="Services" data-ar="الخدمات">Services</a></li>
+                            <li><a href="#portfolio" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h4 class="column-title" data-en="Legal" data-ar="القانوني">Legal</h4>
+                        <ul class="column-list">
+                            <li><a href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
+                            <li><a href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">© 2026 RIBA TECH. <span data-en="All Rights Reserved." data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span></p>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
