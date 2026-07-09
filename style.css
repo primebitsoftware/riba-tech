@@ -89,6 +89,9 @@ body {
 html {
     /* Keep anchored sections clear of the fixed header */
     scroll-padding-top: 96px;
+    /* body's overflow-x propagates to the viewport, so the glow orbs
+       hanging off-screen widen the mobile layout — clip on html too */
+    overflow-x: hidden;
 }
 
 img {
