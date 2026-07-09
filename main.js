@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_KEY = 'sb_publishable_dyE5_6AL46G6VauBbzhZ1Q_R1rLp-MF';
 
     // رقم الواتساب بالصيغة الدولية بدون + (مثال: 962790000000)
-    const DEFAULT_WHATSAPP = '';
+    const DEFAULT_WHATSAPP = '962790058881';
 
     async function saveToSupabase(table, payload) {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
