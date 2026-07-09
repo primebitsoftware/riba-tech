@@ -82,6 +82,24 @@
         .empty { text-align:center; padding:60px 20px; color:var(--muted); }
         .empty i { font-size:2.5rem; opacity:.4; display:block; margin-bottom:12px; }
 
+        /* Search + stats + status */
+        .search-box { width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:9px; padding:11px 14px; color:var(--bright); font-family:inherit; font-size:0.92rem; outline:none; margin-bottom:16px; }
+        .search-box:focus { border-color:var(--accent); }
+        .stats-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+        .stat-chip { flex:1; min-width:120px; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; }
+        .stat-chip .n { font-family:'Outfit',sans-serif; font-size:1.5rem; font-weight:800; color:var(--bright); }
+        .stat-chip .l { font-size:0.75rem; color:var(--muted); }
+        .stat-chip.accent .n { color:var(--accent); }
+        .stat-chip.green .n { color:var(--green); }
+        .card.is-new { border-color:rgba(11,106,159,0.5); box-shadow:0 0 0 1px rgba(11,106,159,0.25); }
+        .card.is-new::before { content:''; position:absolute; top:0; right:0; width:4px; height:100%; background:var(--accent); border-radius:0 12px 12px 0; }
+        .card { position:relative; }
+        .card.handled { opacity:0.62; }
+        .badge-new { background:rgba(11,106,159,0.18); border:1px solid rgba(11,106,159,0.4); color:var(--accent); border-radius:20px; padding:2px 10px; font-size:0.7rem; font-weight:700; }
+        .btn-status { background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:var(--green); border-radius:7px; padding:7px 12px; cursor:pointer; font-family:inherit; font-size:0.8rem; }
+        .btn-status:hover { background:rgba(16,185,129,0.2); }
+        .btn-status.undo { background:rgba(255,255,255,0.05); border-color:var(--border); color:var(--muted); }
+
         /* Team */
         .team-add { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
         .team-add input { flex:1; min-width:200px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:9px; padding:11px 14px; color:var(--bright); font-family:inherit; outline:none; }
@@ -145,6 +163,8 @@
                     <button class="refresh" onclick="loadMessages()"><i class="fa-solid fa-rotate"></i> تحديث</button>
                 </div>
             </div>
+            <div class="stats-bar" id="stats-messages"></div>
+            <input class="search-box" id="search-messages" placeholder="🔍 ابحث بالاسم أو البريد أو الموضوع..." oninput="renderMessages()">
             <div id="messages-list"></div>
         </div>
 
@@ -155,6 +175,8 @@
                     <button class="refresh" onclick="loadLeads()"><i class="fa-solid fa-rotate"></i> تحديث</button>
                 </div>
             </div>
+            <div class="stats-bar" id="stats-leads"></div>
+            <input class="search-box" id="search-leads" placeholder="🔍 ابحث بنوع المشروع..." oninput="renderLeads()">
             <div id="leads-list"></div>
         </div>
 
@@ -244,17 +266,37 @@
         /* ---------- DATA ---------- */
         async function loadMessages() {
             const { data, error } = await sb.from('contact_messages').select('*').order('created_at',{ascending:false});
-            const box = $('messages-list');
-            if (error) { box.innerHTML = errBox(error.message); return; }
+            if (error) { $('messages-list').innerHTML = errBox(error.message); return; }
             messagesData = data;
-            $('count-messages').textContent = data.length;
-            if (!data.length) { box.innerHTML = emptyBox('fa-envelope-open','لا توجد رسائل بعد'); return; }
-            box.innerHTML = data.map(m => `
-                <div class="card">
+            renderMessages();
+        }
+
+        function renderMessages() {
+            const box = $('messages-list');
+            const q = ($('search-messages').value || '').trim().toLowerCase();
+            const all = messagesData;
+            const unread = all.filter(m => m.status === 'new').length;
+            const weekAgo = Date.now() - 7*24*60*60*1000;
+            const thisWeek = all.filter(m => new Date(m.created_at).getTime() > weekAgo).length;
+            $('count-messages').textContent = unread;
+            $('stats-messages').innerHTML = `
+                <div class="stat-chip"><div class="n">${all.length}</div><div class="l">إجمالي الرسائل</div></div>
+                <div class="stat-chip accent"><div class="n">${unread}</div><div class="l">جديدة لم تُتابع</div></div>
+                <div class="stat-chip"><div class="n">${thisWeek}</div><div class="l">خلال 7 أيام</div></div>`;
+
+            const data = q ? all.filter(m => [m.name,m.email,m.subject,m.message].some(v => (v||'').toLowerCase().includes(q))) : all;
+            if (!all.length) { box.innerHTML = emptyBox('fa-envelope-open','لا توجد رسائل بعد'); return; }
+            if (!data.length) { box.innerHTML = emptyBox('fa-magnifying-glass','لا نتائج مطابقة للبحث'); return; }
+            box.innerHTML = data.map(m => {
+                const isNew = m.status === 'new';
+                return `
+                <div class="card ${isNew?'is-new':'handled'}">
                     <div class="card-head">
-                        <div class="card-name"><i class="fa-solid fa-user" style="color:var(--accent)"></i> ${esc(m.name)}</div>
-                        <div style="display:flex;align-items:center;gap:12px">
+                        <div class="card-name"><i class="fa-solid fa-user" style="color:var(--accent)"></i> ${esc(m.name)} ${isNew?'<span class="badge-new">جديد</span>':''}</div>
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
                             <span class="card-time">${fmtDate(m.created_at)}</span>
+                            <button class="btn-status ${isNew?'':'undo'}" onclick="toggleStatus('contact_messages','${esc(m.id)}','${isNew?'handled':'new'}')">
+                                <i class="fa-solid ${isNew?'fa-check':'fa-rotate-left'}"></i> ${isNew?'تمّت المتابعة':'تعليم كجديد'}</button>
                             <button class="remove" onclick="deleteRow('contact_messages','${esc(m.id)}', this)"><i class="fa-solid fa-trash"></i> حذف</button>
                         </div>
                     </div>
@@ -262,23 +304,44 @@
                     ${m.phone ? `<div class="card-row"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/${esc((m.phone||'').replace(/\D/g,''))}" target="_blank">${esc(m.phone)}</a></div>` : ''}
                     <div class="card-row"><i class="fa-solid fa-tag"></i> <span class="subject">${esc(m.subject)}</span></div>
                     <div class="body-box">${esc(m.message)}</div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
         }
+
+        const typeAr = { web:'تطبيق ويب', ecommerce:'متجر إلكتروني', mobile:'تطبيق جوال', brokerage:'فينتك' };
 
         async function loadLeads() {
             const { data, error } = await sb.from('project_leads').select('*').order('created_at',{ascending:false});
-            const box = $('leads-list');
-            if (error) { box.innerHTML = errBox(error.message); return; }
+            if (error) { $('leads-list').innerHTML = errBox(error.message); return; }
             leadsData = data;
-            $('count-leads').textContent = data.length;
-            if (!data.length) { box.innerHTML = emptyBox('fa-calculator','لا توجد طلبات تسعير بعد'); return; }
-            const typeAr = { web:'تطبيق ويب', ecommerce:'متجر إلكتروني', mobile:'تطبيق جوال', brokerage:'فينتك' };
-            box.innerHTML = data.map(l => `
-                <div class="card">
+            renderLeads();
+        }
+
+        function renderLeads() {
+            const box = $('leads-list');
+            const q = ($('search-leads').value || '').trim().toLowerCase();
+            const all = leadsData;
+            const pipeline = all.reduce((s,l) => s + (l.estimated_price||0), 0);
+            const unread = all.filter(l => l.status === 'new').length;
+            $('count-leads').textContent = unread;
+            $('stats-leads').innerHTML = `
+                <div class="stat-chip"><div class="n">${all.length}</div><div class="l">إجمالي الطلبات</div></div>
+                <div class="stat-chip green"><div class="n">$${pipeline.toLocaleString()}</div><div class="l">إجمالي التقديرات</div></div>
+                <div class="stat-chip accent"><div class="n">${unread}</div><div class="l">جديدة لم تُتابع</div></div>`;
+
+            const data = q ? all.filter(l => (typeAr[l.project_type]||l.project_type||'').toLowerCase().includes(q)) : all;
+            if (!all.length) { box.innerHTML = emptyBox('fa-calculator','لا توجد طلبات تسعير بعد'); return; }
+            if (!data.length) { box.innerHTML = emptyBox('fa-magnifying-glass','لا نتائج مطابقة للبحث'); return; }
+            box.innerHTML = data.map(l => {
+                const isNew = l.status === 'new';
+                return `
+                <div class="card ${isNew?'is-new':'handled'}">
                     <div class="card-head">
-                        <div class="card-name"><i class="fa-solid fa-cube" style="color:var(--accent)"></i> ${esc(typeAr[l.project_type]||l.project_type)}</div>
-                        <div style="display:flex;align-items:center;gap:12px">
+                        <div class="card-name"><i class="fa-solid fa-cube" style="color:var(--accent)"></i> ${esc(typeAr[l.project_type]||l.project_type)} ${isNew?'<span class="badge-new">جديد</span>':''}</div>
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
                             <span class="card-time">${fmtDate(l.created_at)}</span>
+                            <button class="btn-status ${isNew?'':'undo'}" onclick="toggleStatus('project_leads','${esc(l.id)}','${isNew?'handled':'new'}')">
+                                <i class="fa-solid ${isNew?'fa-check':'fa-rotate-left'}"></i> ${isNew?'تمّت المتابعة':'تعليم كجديد'}</button>
                             <button class="remove" onclick="deleteRow('project_leads','${esc(l.id)}', this)"><i class="fa-solid fa-trash"></i> حذف</button>
                         </div>
                     </div>
@@ -286,7 +349,16 @@
                     <div class="card-row"><i class="fa-solid fa-layer-group"></i> ${esc(l.pages)} صفحة/شاشة</div>
                     <div class="card-row"><i class="fa-solid fa-clock"></i> ${esc(l.timeline||'—')}</div>
                     ${l.features ? `<div class="card-row"><i class="fa-solid fa-puzzle-piece"></i> ${esc(l.features).split(',').filter(Boolean).map(f=>`<span class="pill">${esc(f)}</span>`).join(' ')}</div>` : ''}
-                </div>`).join('');
+                </div>`;
+            }).join('');
+        }
+
+        async function toggleStatus(table, id, newStatus) {
+            const { error } = await sb.from(table).update({ status: newStatus }).eq('id', id);
+            if (error) { alert('تعذّر التحديث: ' + error.message); return; }
+            const row = (table === 'contact_messages' ? messagesData : leadsData).find(r => r.id === id);
+            if (row) row.status = newStatus;
+            if (table === 'contact_messages') renderMessages(); else renderLeads();
         }
 
         async function loadTeam() {
@@ -336,7 +408,7 @@
         }
 
         function exportExcel(kind) {
-            const typeAr = { web:'تطبيق ويب', ecommerce:'متجر إلكتروني', mobile:'تطبيق جوال', brokerage:'فينتك' };
+            const statusAr = s => s === 'handled' ? 'تمّت المتابعة' : 'جديد';
             let rows, sheetName, fileBase;
             if (kind === 'messages') {
                 if (!messagesData.length) return alert('لا توجد رسائل للتصدير.');
@@ -347,6 +419,7 @@
                     'الهاتف / واتساب': m.phone || '',
                     'الموضوع': m.subject || '',
                     'الرسالة': m.message || '',
+                    'الحالة': statusAr(m.status),
                     'اللغة': m.lang || ''
                 }));
                 sheetName = 'الرسائل'; fileBase = 'RIBA_Messages';
@@ -359,6 +432,7 @@
                     'عدد الصفحات': l.pages || 0,
                     'المدة': l.timeline || '',
                     'المميزات': l.features || '',
+                    'الحالة': statusAr(l.status),
                     'اللغة': l.lang || ''
                 }));
                 sheetName = 'طلبات التسعير'; fileBase = 'RIBA_Leads';
