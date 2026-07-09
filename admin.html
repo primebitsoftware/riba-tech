@@ -239,7 +239,10 @@
                 <div class="card">
                     <div class="card-head">
                         <div class="card-name"><i class="fa-solid fa-user" style="color:var(--accent)"></i> ${esc(m.name)}</div>
-                        <div class="card-time">${fmtDate(m.created_at)}</div>
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <span class="card-time">${fmtDate(m.created_at)}</span>
+                            <button class="remove" onclick="deleteRow('contact_messages','${esc(m.id)}', this)"><i class="fa-solid fa-trash"></i> حذف</button>
+                        </div>
                     </div>
                     <div class="card-row"><i class="fa-solid fa-envelope"></i> <a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>
                     ${m.phone ? `<div class="card-row"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/${esc((m.phone||'').replace(/\D/g,''))}" target="_blank">${esc(m.phone)}</a></div>` : ''}
@@ -259,7 +262,10 @@
                 <div class="card">
                     <div class="card-head">
                         <div class="card-name"><i class="fa-solid fa-cube" style="color:var(--accent)"></i> ${esc(typeAr[l.project_type]||l.project_type)}</div>
-                        <div class="card-time">${fmtDate(l.created_at)}</div>
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <span class="card-time">${fmtDate(l.created_at)}</span>
+                            <button class="remove" onclick="deleteRow('project_leads','${esc(l.id)}', this)"><i class="fa-solid fa-trash"></i> حذف</button>
+                        </div>
                     </div>
                     <div class="card-row"><i class="fa-solid fa-money-bill"></i> <span class="price">$${(l.estimated_price||0).toLocaleString()}</span></div>
                     <div class="card-row"><i class="fa-solid fa-layer-group"></i> ${esc(l.pages)} صفحة/شاشة</div>
@@ -304,6 +310,14 @@
             const { error } = await sb.from('admins').delete().eq('email', email);
             if (error) return setMsg('team-msg','تعذّر الحذف: '+error.message,'err');
             loadTeam();
+        }
+
+        async function deleteRow(table, id, btn) {
+            if (!confirm('هل تريد حذف هذا العنصر نهائياً؟')) return;
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'; }
+            const { error } = await sb.from(table).delete().eq('id', id);
+            if (error) { alert('تعذّر الحذف: ' + error.message); if (btn){ btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-trash"></i> حذف'; } return; }
+            if (table === 'contact_messages') loadMessages(); else loadLeads();
         }
 
         function emptyBox(icon,text){ return `<div class="empty"><i class="fa-solid ${icon}"></i>${text}</div>`; }
