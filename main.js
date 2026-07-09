@@ -16,15 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_URL = 'https://scqnljrwegyouqszwfiy.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_dyE5_6AL46G6VauBbzhZ1Q_R1rLp-MF';
 
-    async function saveToSupabase(msg) {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_messages`, {
+    // رقم الواتساب بالصيغة الدولية بدون + (مثال: 962790000000)
+    const DEFAULT_WHATSAPP = '';
+
+    async function saveToSupabase(table, payload) {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
             method: 'POST',
             headers: {
                 'apikey': SUPABASE_KEY,
                 'Content-Type': 'application/json',
                 'Prefer': 'return=minimal'
             },
-            body: JSON.stringify(msg)
+            body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error(`Supabase HTTP ${res.status}`);
     }
@@ -77,11 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
             emailEl.href = `mailto:${s.email}`;
             emailEl.textContent = s.email;
         }
-        if (s.whatsapp && waChannel && waLink) {
-            waChannel.style.display = 'flex';
-            const num = s.whatsapp.replace(/\D/g, '');
-            waLink.href = `https://wa.me/${num}`;
-            waLink.textContent = s.whatsapp;
+
+        const waRaw = s.whatsapp || DEFAULT_WHATSAPP;
+        const waNumber = String(waRaw).replace(/\D/g, '');
+        if (waNumber) {
+            const waUrl = `https://wa.me/${waNumber}`;
+            if (waChannel && waLink) {
+                waChannel.style.display = 'flex';
+                waLink.href = waUrl;
+                waLink.textContent = waRaw;
+            }
+            const floatBtn = document.getElementById('whatsapp-float');
+            if (floatBtn) {
+                floatBtn.href = waUrl;
+                floatBtn.style.display = 'flex';
+            }
+            const footerWa = document.getElementById('footer-whatsapp');
+            if (footerWa) footerWa.href = waUrl;
         }
     }
 
@@ -478,6 +493,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeline = sumTimeline?.textContent || '';
             const price = totalPriceDisplay?.textContent || '';
 
+            // Save the estimate as a lead in Supabase (fire & forget)
+            const featsSelected = Array.from(document.querySelectorAll('.hidden-checkbox:checked'))
+                .map(c => c.id.replace('feat-', ''));
+            saveToSupabase('project_leads', {
+                project_type: document.querySelector('input[name="project-type"]:checked')?.value || 'web',
+                pages: parseInt(pagesSlider?.value || 0),
+                features: featsSelected.join(','),
+                estimated_price: parseInt(price.replace(/\D/g, '')) || null,
+                timeline: timeline,
+                lang: currentLang
+            }).catch(err => console.warn('Lead save error:', err));
+
             if (subject) subject.value = `[RIBA] ${projectType} Package`;
             if (message) {
                 message.value = currentLang === 'ar'
@@ -534,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i>`;
             try {
-                await saveToSupabase({ name, email, phone, subject, message, lang: currentLang });
+                await saveToSupabase('contact_messages', { name, email, phone, subject, message, lang: currentLang });
                 cloudSaved = true;
             } catch (err) {
                 console.warn('Supabase error:', err);
@@ -638,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .portfolio-item, .feature-item, .channel-card').forEach(el => {
+    document.querySelectorAll('.service-card, .portfolio-item, .feature-item, .channel-card, .process-card').forEach(el => {
         el.classList.add('animate-ready');
         observer.observe(el);
     });

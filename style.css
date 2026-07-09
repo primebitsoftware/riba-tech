@@ -2826,6 +2826,103 @@ body.arabic-mode .column-title {
     }
 }
 
+/* -----------------------------------------------------------------------
+   PROCESS SECTION — How We Work
+----------------------------------------------------------------------- */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 20px;
+    padding-top: 14px;
+}
+
+.process-card {
+    position: relative;
+    background: var(--bg-dark-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 32px 20px 28px;
+    text-align: center;
+    transition: var(--transition-medium);
+}
+
+.process-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-glass-glow);
+    box-shadow: var(--shadow-premium), var(--shadow-glow);
+}
+
+.process-num {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 0 12px rgba(123, 44, 191, 0.5);
+}
+
+.process-icon {
+    font-size: 1.6rem;
+    color: var(--clr-accent-glow);
+    margin-bottom: 14px;
+}
+
+.process-card h4 {
+    font-family: var(--font-heading);
+    color: var(--txt-bright);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.process-card p {
+    color: var(--txt-muted);
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+/* -----------------------------------------------------------------------
+   FLOATING WHATSAPP BUTTON
+----------------------------------------------------------------------- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+    z-index: 950;
+    transition: var(--transition-fast);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+}
+
+[dir="rtl"] .whatsapp-float {
+    right: auto;
+    left: 24px;
+}
+
 /* Touch devices have no hover — keep portfolio details visible */
 @media (hover: none) {
     .portfolio-overlay {
