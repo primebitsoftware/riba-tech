@@ -2827,6 +2827,213 @@ body.arabic-mode .column-title {
 }
 
 /* -----------------------------------------------------------------------
+   TESTIMONIAL — Letter avatars & star ratings
+----------------------------------------------------------------------- */
+.testimonial-avatar-wrapper:has(.testimonial-avatar-initial) {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border-radius: 0;
+}
+
+.testimonial-avatar-wrapper:has(.testimonial-avatar-initial)::before,
+.testimonial-avatar-wrapper:has(.testimonial-avatar-initial)::after {
+    display: none;
+}
+
+.testimonial-avatar-initial {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.9rem;
+    line-height: 1;
+    box-shadow: 0 8px 22px rgba(123, 44, 191, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    text-transform: uppercase;
+}
+
+.testimonial-stars {
+    display: flex;
+    gap: 4px;
+    color: #F5B301;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+/* -----------------------------------------------------------------------
+   WHY CHOOSE US — Stats band
+----------------------------------------------------------------------- */
+.whyus-section {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.whyus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.whyus-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px;
+}
+
+.whyus-item:not(:last-child) {
+    border-right: 1px solid var(--border-glass);
+}
+
+[dir="rtl"] .whyus-item:not(:last-child) {
+    border-right: none;
+    border-left: 1px solid var(--border-glass);
+}
+
+.whyus-icon {
+    font-size: 1.7rem;
+    color: var(--clr-accent-glow);
+    flex-shrink: 0;
+}
+
+.whyus-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.whyus-val {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--txt-bright);
+}
+
+.whyus-lbl {
+    font-size: 0.82rem;
+    color: var(--txt-muted);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .whyus-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 16px;
+    }
+    .whyus-item:nth-child(odd) {
+        border-right: 1px solid var(--border-glass);
+    }
+    .whyus-item:nth-child(even) {
+        border-right: none;
+    }
+    [dir="rtl"] .whyus-item:nth-child(odd) {
+        border-right: none;
+        border-left: 1px solid var(--border-glass);
+    }
+    [dir="rtl"] .whyus-item:nth-child(even) {
+        border-left: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .whyus-item { flex-direction: column; gap: 8px; text-align: center; }
+    .whyus-info { align-items: center; }
+}
+
+/* -----------------------------------------------------------------------
+   FAQ — Accordion
+----------------------------------------------------------------------- */
+.faq-list {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background: var(--bg-dark-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-fast);
+}
+
+.faq-item.open {
+    border-color: var(--border-glass-glow);
+    box-shadow: var(--shadow-glow);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: inherit;
+    font-family: var(--font-heading);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--txt-bright);
+    transition: var(--transition-fast);
+}
+
+body.arabic-mode .faq-question {
+    font-family: 'Cairo', sans-serif;
+}
+
+.faq-question:hover {
+    color: var(--clr-primary-glow);
+}
+
+.faq-chevron {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--clr-accent-glow);
+    transition: transform var(--transition-fast);
+}
+
+.faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-answer p {
+    padding: 0 24px 20px;
+    color: var(--txt-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+[dir="rtl"] .faq-question,
+[dir="rtl"] .faq-answer p {
+    text-align: right;
+}
+
+/* -----------------------------------------------------------------------
    PROCESS SECTION — How We Work
 ----------------------------------------------------------------------- */
 .process-grid {

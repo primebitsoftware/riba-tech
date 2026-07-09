@@ -178,6 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update admin panel labels
         updateAdminText(lang);
+
+        // Update testimonial letter-avatars to match the shown name
+        updateTestimonialInitials();
+    }
+
+    function updateTestimonialInitials() {
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            const initial = card.querySelector('.testimonial-avatar-initial');
+            const name = card.querySelector('.testimonial-name');
+            if (initial && name) {
+                initial.textContent = (name.textContent.trim()[0] || '?');
+            }
+        });
     }
 
     function updateFormPlaceholders(lang) {
@@ -668,6 +681,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.service-card, .portfolio-item, .feature-item, .channel-card, .process-card').forEach(el => {
         el.classList.add('animate-ready');
         observer.observe(el);
+    });
+
+    /* -----------------------------------------------------------------------
+       FAQ ACCORDION
+    ----------------------------------------------------------------------- */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('open');
+
+            // Close all others (single-open accordion)
+            document.querySelectorAll('.faq-item.open').forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('open');
+                    other.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            if (isOpen) {
+                item.classList.remove('open');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
     });
 
 });
