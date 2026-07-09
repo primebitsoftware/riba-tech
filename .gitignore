@@ -1,0 +1,5 @@
+# Generated deploy bundle (rebuilt from the root files)
+deploy/
+
+# Node
+node_modules/
