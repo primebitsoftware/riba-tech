@@ -139,12 +139,22 @@
         </div>
 
         <div class="panel" id="panel-messages">
-            <div class="toolbar"><h2>رسائل التواصل</h2><button class="refresh" onclick="loadMessages()"><i class="fa-solid fa-rotate"></i> تحديث</button></div>
+            <div class="toolbar"><h2>رسائل التواصل</h2>
+                <div style="display:flex;gap:8px">
+                    <button class="refresh" onclick="exportExcel('messages')"><i class="fa-solid fa-file-excel" style="color:var(--green)"></i> تنزيل Excel</button>
+                    <button class="refresh" onclick="loadMessages()"><i class="fa-solid fa-rotate"></i> تحديث</button>
+                </div>
+            </div>
             <div id="messages-list"></div>
         </div>
 
         <div class="panel hidden" id="panel-leads">
-            <div class="toolbar"><h2>طلبات تقدير التكلفة</h2><button class="refresh" onclick="loadLeads()"><i class="fa-solid fa-rotate"></i> تحديث</button></div>
+            <div class="toolbar"><h2>طلبات تقدير التكلفة</h2>
+                <div style="display:flex;gap:8px">
+                    <button class="refresh" onclick="exportExcel('leads')"><i class="fa-solid fa-file-excel" style="color:var(--green)"></i> تنزيل Excel</button>
+                    <button class="refresh" onclick="loadLeads()"><i class="fa-solid fa-rotate"></i> تحديث</button>
+                </div>
+            </div>
             <div id="leads-list"></div>
         </div>
 
@@ -164,6 +174,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
         const SUPABASE_URL = 'https://scqnljrwegyouqszwfiy.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_dyE5_6AL46G6VauBbzhZ1Q_R1rLp-MF';
@@ -174,6 +185,8 @@
         const fmtDate = s => { try { return new Date(s).toLocaleString('ar-EG', {dateStyle:'medium', timeStyle:'short'}); } catch(e){ return s; } };
 
         let currentEmail = '';
+        let messagesData = [];
+        let leadsData = [];
 
         /* ---------- AUTH ---------- */
         async function doLogin() {
@@ -233,6 +246,7 @@
             const { data, error } = await sb.from('contact_messages').select('*').order('created_at',{ascending:false});
             const box = $('messages-list');
             if (error) { box.innerHTML = errBox(error.message); return; }
+            messagesData = data;
             $('count-messages').textContent = data.length;
             if (!data.length) { box.innerHTML = emptyBox('fa-envelope-open','لا توجد رسائل بعد'); return; }
             box.innerHTML = data.map(m => `
@@ -255,6 +269,7 @@
             const { data, error } = await sb.from('project_leads').select('*').order('created_at',{ascending:false});
             const box = $('leads-list');
             if (error) { box.innerHTML = errBox(error.message); return; }
+            leadsData = data;
             $('count-leads').textContent = data.length;
             if (!data.length) { box.innerHTML = emptyBox('fa-calculator','لا توجد طلبات تسعير بعد'); return; }
             const typeAr = { web:'تطبيق ويب', ecommerce:'متجر إلكتروني', mobile:'تطبيق جوال', brokerage:'فينتك' };
@@ -318,6 +333,41 @@
             const { error } = await sb.from(table).delete().eq('id', id);
             if (error) { alert('تعذّر الحذف: ' + error.message); if (btn){ btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-trash"></i> حذف'; } return; }
             if (table === 'contact_messages') loadMessages(); else loadLeads();
+        }
+
+        function exportExcel(kind) {
+            const typeAr = { web:'تطبيق ويب', ecommerce:'متجر إلكتروني', mobile:'تطبيق جوال', brokerage:'فينتك' };
+            let rows, sheetName, fileBase;
+            if (kind === 'messages') {
+                if (!messagesData.length) return alert('لا توجد رسائل للتصدير.');
+                rows = messagesData.map(m => ({
+                    'التاريخ': fmtDate(m.created_at),
+                    'الاسم': m.name || '',
+                    'البريد الإلكتروني': m.email || '',
+                    'الهاتف / واتساب': m.phone || '',
+                    'الموضوع': m.subject || '',
+                    'الرسالة': m.message || '',
+                    'اللغة': m.lang || ''
+                }));
+                sheetName = 'الرسائل'; fileBase = 'RIBA_Messages';
+            } else {
+                if (!leadsData.length) return alert('لا توجد طلبات للتصدير.');
+                rows = leadsData.map(l => ({
+                    'التاريخ': fmtDate(l.created_at),
+                    'نوع المشروع': typeAr[l.project_type] || l.project_type || '',
+                    'السعر التقديري ($)': l.estimated_price || 0,
+                    'عدد الصفحات': l.pages || 0,
+                    'المدة': l.timeline || '',
+                    'المميزات': l.features || '',
+                    'اللغة': l.lang || ''
+                }));
+                sheetName = 'طلبات التسعير'; fileBase = 'RIBA_Leads';
+            }
+            const ws = XLSX.utils.json_to_sheet(rows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, sheetName);
+            const today = new Date().toISOString().slice(0,10);
+            XLSX.writeFile(wb, `${fileBase}_${today}.xlsx`);
         }
 
         function emptyBox(icon,text){ return `<div class="empty"><i class="fa-solid ${icon}"></i>${text}</div>`; }
