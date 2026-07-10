@@ -178,14 +178,21 @@ img {
     100% { transform: scale(0.9); opacity: 0.7; }
 }
 
-/* Glow Background Orbs */
+/* Glow Background Orbs — clipped so they never cause horizontal overflow */
+.bg-orbs {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .glow-orb {
     position: absolute;
     width: 450px;
     height: 450px;
     border-radius: 50%;
     filter: blur(130px);
-    z-index: -1;
     pointer-events: none;
     opacity: 0.35;
 }
@@ -2082,6 +2089,20 @@ img {
 
     .calc-checkbox-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Prevent the calculator panels from overflowing their wrapper on mobile */
+    .calculator-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calc-options,
+    .calc-summary-panel {
+        padding: 24px;
+    }
+
+    .sum-value {
+        white-space: normal;
     }
 
     .portfolio-grid {
